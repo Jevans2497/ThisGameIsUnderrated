@@ -8,41 +8,42 @@
 
 </head>
 <body>
-	<p onload="getName()" id="name"></p>
+  <div class="content-wrapper" id="content">
+  	<p onload="getName()" id="name"></p>
 
-	<div class="word" id="wordEvent">
-		<h1>Blank</h1>
-	</div>
+  	<div class="word" id="wordEvent">
+  		<h1>Blank</h1>
+  	</div>
 
-	<div class="tgiu-wrapper">
-		<ul id="events"></ul>
-		<div class="button-wrapper" id="wrapper">
-			<button id="underrated">Underrated</button>
-			<button id="properlyrated">Properly Rated</button>
-			<button id="overrated">Overrated</button>
-		</div>
-	</div>
-
+  	<div class="tgiu-wrapper">
+  		<ul id="events"></ul>
+  		<div class="button-wrapper" id="wrapper">
+  			<button id="underrated">Underrated</button>
+  			<button id="properlyrated">Properly Rated</button>
+  			<button id="overrated">Overrated</button>
+  		</div>
+  	</div>
+</div>
 
 	<script src="/socket.io/socket.io.js"></script>
-  	<script src="client.js"></script>
+  <script src="client.js"></script>
 
-  	<script type="text/javascript">
+  <script type="text/javascript">
   		
-  		function getName() {
-  			if (typeof(Storage) !== "undefined") {
-  				var text = "Player: ";
-		    	name = sessionStorage.name;
-		    	var output = text.concat(name);
-		    	console.log(name);
-		    	var nameNode = document.getElementById("name");
-  				nameNode.innerHTML = output;
-			}
-  		}
+		function getName() {
+			if (typeof(Storage) !== "undefined") {
+				var text = "Player: ";
+	    	name = sessionStorage.name;
+	    	var output = text.concat(name);
+	    	console.log(name);
+	    	var nameNode = document.getElementById("name");
+				nameNode.innerHTML = output;
+		   }
+		}
 
-  		getName();
+    getName();
 
-  	</script>
+  </script>
 
 </body>
 </html>
