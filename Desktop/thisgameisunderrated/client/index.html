@@ -10,12 +10,13 @@
 <body>
 	<div class="form-wrapper">
 		<form action="game.html">
-			<input type="text" id="nameField" name="name" maxlength="13", autocomplete="off", placeholder="Name", onfocus="this.placeholder =''", onblur="placeholder='Name'" required, oninput="checkFilled()", onabort="checkFilled()">
-			<input type="submit" id="submitbutton" value="Start">
+			<input type="text" id="nameField" maxlength="13", autocomplete="off", placeholder="Name", onfocus="this.placeholder =''", onblur="placeholder='Name'" required, oninput="checkFilled()", onabort="checkFilled()">
+			<input type="submit" id="submitbutton" value="Start" onclick="storeName()">
 		</form>
 	</div>
 
 	<script type="text/javascript">
+
 	function checkFilled() {
 	    var inputVal = document.getElementById("nameField");
 	    var submitbutton = document.getElementById("submitbutton");
@@ -42,6 +43,16 @@
 	}
 
 	checkFilled();
+
+	function storeName() {
+		if (typeof(Storage) !== "undefined") {
+			var nameVal = document.getElementById("nameField").value;
+		    sessionStorage.name = nameVal;
+		    console.log(`stored name ${sessionStorage.name}`);
+		}
+	}
+
+	storeName();
 
 	</script>
 </body>
