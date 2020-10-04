@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>This Game is Underrated</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="game.css">
+
+</head>
+<body>
+	<p onload="getName()" id="name"></p>
+
+	<div class="word" id="wordEvent">
+		<h1>Blank</h1>
+	</div>
+
+	<div class="tgiu-wrapper">
+		<ul id="events"></ul>
+		<div class="button-wrapper" id="wrapper">
+			<button id="underrated">Underrated</button>
+			<button id="properlyrated">Properly Rated</button>
+			<button id="overrated">Overrated</button>
+		</div>
+	</div>
+
+
+	<script src="/socket.io/socket.io.js"></script>
+  	<script src="client.js"></script>
+
+  	<script type="text/javascript">
+  		
+  		function getName() {
+  			if (typeof(Storage) !== "undefined") {
+  				var text = "Player: ";
+		    	name = sessionStorage.name;
+		    	var output = text.concat(name);
+		    	console.log(name);
+		    	var nameNode = document.getElementById("name");
+  				nameNode.innerHTML = output;
+			}
+  		}
+
+  		getName();
+
+  	</script>
+
+</body>
+</html>
