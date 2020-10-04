@@ -11,6 +11,14 @@ const writeEvent = (text) => {
 	parent.appendChild(el);
 };
 
+const setNewWord = (text) => {
+	const parent = document.querySelector('#wordEvent');
+	parent.innerHTML = '';
+	const el = document.createElement('h1');
+	el.innerHTML = text;
+	parent.appendChild(el);
+}
+
 const onFormSubmitted = (e) => {
 	e.preventDefault();
 	const input = document.querySelector('#chat');
@@ -21,20 +29,15 @@ const onFormSubmitted = (e) => {
 };
 
 const addButtonListeners = () => {
-	['rock', 'paper', 'scissors'].forEach((id) => {
+	['underrated', 'properlyrated', 'overrated'].forEach((id) => {
 		const button = document.getElementById(id);
 		button.addEventListener('click', () => {
-			socket.emit('turn', id);
+			socket.emit('buttonClicked', id);
 		});
 	});
 };
 
-writeEvent('Welcome to RPS');
-
 const socket = io();
-socket.on('message', writeEvent);
-
-document.querySelector('#chat-form')
-.addEventListener('submit', onFormSubmitted);
+socket.on('message', setNewWord);
 
 addButtonListeners();

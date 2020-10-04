@@ -8,22 +8,42 @@
 
 </head>
 <body>
-	<div class="word">
-		<h1>This Game</h1>
+	<div class="form-wrapper">
+		<form action="game.html">
+			<input type="text" id="nameField" name="name" maxlength="13", autocomplete="off", placeholder="Name", onfocus="this.placeholder =''", onblur="placeholder='Name'" required, oninput="checkFilled()", onabort="checkFilled()">
+			<input type="submit" id="submitbutton" value="Start">
+		</form>
 	</div>
 
-	<div class="tgiu-wrapper">
-		<ul id="events"></ul>
-		<div class="button-wrapper">
-			<button id="underrated">Underrated</button>
-			<button id="properlyrated">Properly Rated</button>
-			<button id="overrated">Overrated</button>
-		</div>
-	</div>
+	<script type="text/javascript">
+	function checkFilled() {
+	    var inputVal = document.getElementById("nameField");
+	    var submitbutton = document.getElementById("submitbutton");
+	    if (inputVal.value != "") {
+	        enableSubmit(submitbutton);
+	    }
+	    else {
+	        disableSubmit();
+	    }
+	}
 
+	function enableSubmit(submitbutton) {
+		this.submitbutton.style.backgroundColor = "#008CBA";
+        this.submitbutton.style.color = "white";
+       	this.submitbutton.disabled = false;
+       	this.submitbutton.style.cursor = "pointer";
+	}
 
-	<script src="/socket.io/socket.io.js"></script>
-  	<script src="client.js"></script>
+	function disableSubmit(submitbutton) {
+		this.submitbutton.style.backgroundColor = "";
+        this.submitbutton.style.color = "grey";
+        this.submitbutton.disabled = true;
+        this.submitbutton.style.cursor = "default";
+	}
 
+	checkFilled();
+
+	</script>
 </body>
 </html>
+

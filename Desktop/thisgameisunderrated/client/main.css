@@ -1,16 +1,46 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
 }
 
-.word {
-  text-align: center; /* center the text */
-  color: black; /* white text color */
-  font-size: 50px;
+form-wrapper {
+    position: relative;
 }
 
-button {
+form {
+	width: 600px;
+	height: 50px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -100px 0 0 -300px;
+	display: block;
+}
+
+input[type=text] {
+	border: none;
+	border-bottom: 1px solid grey;
+	width: 600px;
+	height: 100px;
+	font-size: 100px;
+	font-family: 'Verdana';
+	padding-bottom: 30px;
+	text-align: center;
+	caret-color: grey;
+	text-transform: capitalize;
+}
+
+::placeholder {
+	opacity: 0.2;
+}
+
+input[type=text]:focus {
+	outline: none;
+	
+}
+
+input[type=submit] {
 	background-color: #e7e7e7;
-	color: black;
+	color: grey;
 	border: none;
 	border-radius: 12px;
 	cursor: pointer;
@@ -20,37 +50,6 @@ button {
 	display: inline-block;
 	font-size: 16px;
 	transition-duration: 0.4s;
-	width: 250px;
+	width: 150px;
+	margin-top: 50px;
 }
-
-button.under {
-	margin-left: 200px;
-}
-
-button.properly {
-}
-
-button.over {
-	margin-right: 200px;
-}
-
-button:focus {
-	background-color: #008CBA;
-	color: white;
-	box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 4px 10px 0 rgba(0,0,0,0.19);
-	outline: none;
-}
-
-button:hover {
-  box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 4px 10px 0 rgba(0,0,0,0.19);
-}
-
-section {
-	display: flex;
-  	align-items: center;
-  	justify-content: space-around;
-}
-
-
-
-

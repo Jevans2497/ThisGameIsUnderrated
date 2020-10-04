@@ -1,7 +1,7 @@
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
-const RpsGame = require('./rps-game');
+const tgiuGame = require('./tgiu-game');
 
 const app = express()
 
@@ -22,18 +22,8 @@ server.listen(8080, () => {
 	console.log('RPS started on 8080');
 });
 
-let waitingPlayer = null;
+let game = new tgiuGame();
 
 io.on('connection', (socket) => {
-	if (waitingPlayer) {
-		new RpsGame(waitingPlayer, socket);
-		waitingPlayer = null;
-	} else { 
-		waitingPlayer = socket;
-		waitingPlayer.emit('message', 'Waiting for opponent');
-	}
-
-	socket.on('message', (text) => {
-		io.emit('message', text);
-	});
+	game.addPlayer(socket);
 });
