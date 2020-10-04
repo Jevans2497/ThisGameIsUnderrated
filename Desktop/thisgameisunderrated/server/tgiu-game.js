@@ -8,14 +8,17 @@ class tgiuGame {
 	}
 
 	addPlayer(socket) {
-		let player = new Player(socket)
-		console.log(`New player added ${this.players.length + 1}`);
-		player.socket.on('buttonClicked', (button) => {
-			player.buttonSelected = button;
-			this.buttonClicked(button);
+		socket.on('name', (name) => {
+			this.name = name;
+			let player = new Player(socket, name);
+			console.log(`New player added: ${player.name}`);
+			player.socket.on('buttonClicked', (button) => {
+				player.buttonSelected = button;
+				this.buttonClicked(button);
+			});
+			this.players.push(player);
+			this.loadWord();
 		});
-		this.players.push(player);
-		this.loadWord();
 	}
 
 	buttonClicked(button) {
@@ -37,10 +40,10 @@ class tgiuGame {
 	showResults() {
 		var countArr = this.countPlayerChoices();
 		var resultsArr = this.convertCountsToResults(countArr);
-		console.log(resultsArr);
-		//Reset buttons
-		// this.getNewWord();
-		// this.loadWord();
+		this.players.forEach((player) => {
+			player.socket.emit('results', resultsArr);
+			player.socket.emit('nameAndShame', player.name, player.buttonSelected);
+		})
 	}
 
 	countPlayerChoices() {
@@ -51,19 +54,9 @@ class tgiuGame {
 	}
 
 	convertCountsToResults(countArr) {
-		var resultsArr = [];
 		var min = Math.min(...countArr.filter((e) => e != 0)); //Min excluding 0
-		var index;
-		for (index = 0; index < countArr.length; index++) {
-			if (countArr[index] == 0) {
-				resultsArr.push(0);
-			} else if (countArr[index] == min) {
-				resultsArr.push(-1);
-			} else {
-				resultsArr.push(1);
-			}
-		}
-		return resultsArr;
+		//1 = majority, 0 = minority, -1 = no response
+		return countArr.map((e) => Math.sign(e - min));
 	}
 
 	loadWord() {
@@ -107,8 +100,9 @@ class tgiuGame {
 }
 
 class Player {
-	constructor(socket) {
+	constructor(socket, name) {
 		this.socket = socket
+		this.name = name;
 		this.buttonSelected = null;
 	}
 }

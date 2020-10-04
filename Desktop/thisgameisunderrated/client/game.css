@@ -5,7 +5,7 @@ body {
 .button-wrapper {
 	text-align: center;
 	margin-top: 90px;
-	border: 3px solid green;
+	/*border: 3px solid green;*/
 }
 
 .word {
@@ -28,6 +28,7 @@ button {
 	font-size: 16px;
 	transition-duration: 0.4s;
 	width: 220px;
+	/*border: 3px solid blue;*/
 }
 
 #underrated {
@@ -35,6 +36,32 @@ button {
 }
 
 #overrated {
+	margin-left: 50px;
+}
+
+.lists-wrapper {
+	text-align: center;
+}
+
+ul {
+	display: inline-block;
+	vertical-align: top;
+	width: 185px;
+	padding: 15px;
+	font-size: 16px;
+	/*border: 3px solid red;*/
+}
+
+li {
+	list-style: none;
+	padding-bottom: 10px;
+}
+
+#underList {
+	margin-right: 50px;
+}
+
+#overList {
 	margin-left: 50px;
 }
 
