@@ -26,4 +26,8 @@ let game = new tgiuGame();
 
 io.on('connection', (socket) => {
 	game.addPlayer(socket);
+
+	socket.on('disconnect', () => {
+		game.playerDisconnected(socket);
+	});
 });

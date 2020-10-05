@@ -18,6 +18,15 @@ class tgiuGame {
 		});
 	}
 
+	playerDisconnected(socket) {
+		var sockets = this.players.map((p) => p.socket.id);
+		var indexOfSocket = sockets.indexOf(socket.id);
+		if (indexOfSocket > -1) {
+			console.log(`${this.players[indexOfSocket].name} disconnected`);
+  			this.players.splice(indexOfSocket, 1);
+		}
+	}
+
 	setupSocketEvents(player) {
 		player.socket.on('buttonClicked', (button) => {
 			player.buttonSelected = button;
