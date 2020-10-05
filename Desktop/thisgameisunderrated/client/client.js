@@ -33,23 +33,30 @@ const displayResults = (resultsArr) => {
 	}
 }
 
-const displayName = (name, buttonSelected) => {
-	var listToAddNameID = "";
-	switch (buttonSelected) {
-		case "underrated":
-			listToAddNameID = "underList";
-			break;
-		case "properlyrated":
-			listToAddNameID = "properlyList";
-			break;
-		case "overrated":
-			listToAddNameID = "overList";
-			break;
-		default:
-			listToAddNameID = "ERROR";
+const displayNames = (playersChoicesDict) => {
+	for (let id in playersChoicesDict) {
+		let listId = getListIdFromButtonId(id);
+		for (var name of playersChoicesDict[id]) {
+			addNameToList(listId, name);
+		}
 	}
-	console.log(buttonSelected);
-	parent = document.getElementById(listToAddNameID);
+}
+
+const getListIdFromButtonId = (buttonId) => {
+	switch (buttonId) {
+		case "underrated":
+			return "underList";
+		case "properlyrated":
+			return "properlyList";
+		case "overrated":
+			return "overList";
+		default:
+			return "ERROR";
+		}
+}
+
+const addNameToList = (listId, name) => {
+	parent = document.getElementById(listId);
 	const li = document.createElement("li");
 	li.innerHTML = name;
 	parent.appendChild(li);
@@ -58,8 +65,7 @@ const displayName = (name, buttonSelected) => {
 const socket = io();
 socket.on('message', setNewWord);
 socket.on('results', displayResults);
-socket.on('nameAndShame', displayName);
-
+socket.on('nameAndShame', displayNames);
 socket.emit('name', sessionStorage.name);
 
 addButtonListeners();

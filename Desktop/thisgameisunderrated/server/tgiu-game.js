@@ -40,10 +40,24 @@ class tgiuGame {
 	showResults() {
 		var countArr = this.countPlayerChoices();
 		var resultsArr = this.convertCountsToResults(countArr);
+		var playersChoicesDict = this.makePlayersChoicesDict();
 		this.players.forEach((player) => {
 			player.socket.emit('results', resultsArr);
-			player.socket.emit('nameAndShame', player.name, player.buttonSelected);
+			player.socket.emit('nameAndShame', playersChoicesDict);
 		})
+	}
+
+	makePlayersChoicesDict() {
+		//A dictionary mapping each button to who chose it. Allows displaying it to all users 
+		var playerChoices = {};
+		this.players.forEach((player) => {
+			if (playerChoices[player.buttonSelected]) {
+				playerChoices[player.buttonSelected].push(player.name);
+			} else {
+				playerChoices[player.buttonSelected] = [player.name];
+			}
+		});
+		return playerChoices;
 	}
 
 	countPlayerChoices() {
