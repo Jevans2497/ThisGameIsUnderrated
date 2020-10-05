@@ -7,15 +7,16 @@ body {
   color: black; /* white text color */
   margin-top: 120px;
   font-size: 60px;
+  vertical-align: top;
   /*border: 3px solid black;*/
 }
 
 button.new-word {
 	/*border: 3px solid yellow;*/
 	margin: 0 auto;
-	/*display: block;*/
-	display: none;
-	background-color: #cef3ff;
+	display: block;
+	background-color: transparent;
+	color: transparent;
 	border-radius: 12px;
 	border: none;
 	width: 100px;
@@ -27,7 +28,7 @@ button.new-word:focus {
 	outline: none;
 }
 
-button.new-word:hover {
+button.new-word:hover:enabled {
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.24), 0 4px 6px 0 rgba(0,0,0,0.19);
 }
 
@@ -53,15 +54,15 @@ button.rated-button {
 	/*border: 3px solid blue;*/
 }
 
-button.rated-button:focus {
-	background-color: #008CBA;
-	color: white;
-	box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 4px 10px 0 rgba(0,0,0,0.19);
+button.rated-button:focus:enabled {
+	background-color: #008CBA !important;
+	color: white !important;
+	box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 4px 10px 0 rgba(0,0,0,0.19) !important;
 	outline: none;
 }
 
-button.rated-button:hover {
-  box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 4px 10px 0 rgba(0,0,0,0.19);
+button.rated-button:hover:enabled {
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 4px 10px 0 rgba(0,0,0,0.19) !important; 
 }
 
 #underrated {

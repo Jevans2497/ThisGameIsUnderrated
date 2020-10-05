@@ -12,12 +12,19 @@ class tgiuGame {
 			this.name = name;
 			let player = new Player(socket, name);
 			console.log(`New player added: ${player.name}`);
-			player.socket.on('buttonClicked', (button) => {
-				player.buttonSelected = button;
-				this.buttonClicked(button);
-			});
+			this.setupSocketEvents(player);
 			this.players.push(player);
 			this.loadWord();
+		});
+	}
+
+	setupSocketEvents(player) {
+		player.socket.on('buttonClicked', (button) => {
+			player.buttonSelected = button;
+			this.buttonClicked(button);
+		});
+		player.socket.on('newRound', () => {
+			this.startNextRound();
 		});
 	}
 
@@ -45,8 +52,7 @@ class tgiuGame {
 			player.socket.emit('results', resultsArr);
 			player.socket.emit('nameAndShame', playersChoicesDict);
 			player.socket.emit('showNewWordButton');
-		})
-
+		});
 	}
 
 	makePlayersChoicesDict() {
@@ -75,12 +81,21 @@ class tgiuGame {
 		return countArr.map((e) => Math.sign(e - min));
 	}
 
+	startNextRound() {
+		this.players.forEach((player) => {
+			player.buttonSelected = null;
+			player.socket.emit('reset');
+		});
+		this.getNewWord();
+		this.loadWord();
+	}
+
 	loadWord() {
 		if (this.currentWord == "") {
 			this.getNewWord();
 		}
 		this.players.forEach((player) => {
-			player.socket.emit('message', this.currentWord);
+			player.socket.emit('newWord', this.currentWord);
 		});
 	}
 
