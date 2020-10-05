@@ -33,6 +33,12 @@ const displayResults = (resultsArr) => {
 	}
 }
 
+const showNewWordButton = () => {
+	const newWordButton = document.getElementById("new-word-button");
+	console.log("BLOCK");
+	newWordButton.style.display = "block";
+}
+
 const displayNames = (playersChoicesDict) => {
 	for (let id in playersChoicesDict) {
 		let listId = getListIdFromButtonId(id);
@@ -66,6 +72,7 @@ const socket = io();
 socket.on('message', setNewWord);
 socket.on('results', displayResults);
 socket.on('nameAndShame', displayNames);
+socket.on('showNewWordButton', showNewWordButton);
 socket.emit('name', sessionStorage.name);
 
 addButtonListeners();

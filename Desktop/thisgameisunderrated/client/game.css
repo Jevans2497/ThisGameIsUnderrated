@@ -2,20 +2,42 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.button-wrapper {
-	text-align: center;
-	margin-top: 90px;
-	/*border: 3px solid green;*/
-}
-
 .word {
   text-align: center; /* center the text */
   color: black; /* white text color */
   margin-top: 120px;
   font-size: 60px;
+  /*border: 3px solid black;*/
 }
 
-button {
+button.new-word {
+	/*border: 3px solid yellow;*/
+	margin: 0 auto;
+	/*display: block;*/
+	display: none;
+	background-color: #cef3ff;
+	border-radius: 12px;
+	border: none;
+	width: 100px;
+	padding: 5px;
+	margin-top: -70px;
+}
+
+button.new-word:focus {
+	outline: none;
+}
+
+button.new-word:hover {
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.24), 0 4px 6px 0 rgba(0,0,0,0.19);
+}
+
+.button-wrapper {
+	text-align: center;
+	margin-top: 100px;
+	/*border: 3px solid green;*/
+}
+
+button.rated-button {
 	background-color: #e7e7e7;
 	color: black;
 	border: none;
@@ -29,6 +51,17 @@ button {
 	transition-duration: 0.4s;
 	width: 220px;
 	/*border: 3px solid blue;*/
+}
+
+button.rated-button:focus {
+	background-color: #008CBA;
+	color: white;
+	box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 4px 10px 0 rgba(0,0,0,0.19);
+	outline: none;
+}
+
+button.rated-button:hover {
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 4px 10px 0 rgba(0,0,0,0.19);
 }
 
 #underrated {
@@ -63,17 +96,6 @@ li {
 
 #overList {
 	margin-left: 50px;
-}
-
-button:focus {
-	background-color: #008CBA;
-	color: white;
-	box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 4px 10px 0 rgba(0,0,0,0.19);
-	outline: none;
-}
-
-button:hover {
-  box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 4px 10px 0 rgba(0,0,0,0.19);
 }
 
 
