@@ -15,7 +15,7 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 server.on('error', (err) => {
-	consoler.error('Server error: ', err);
+	console.error('Server error: ', err);
 });
 
 server.listen(8080, () => {
