@@ -12,6 +12,9 @@
 		<form action="game.html">
 			<input type="text" id="nameField" maxlength="13", autocomplete="off", placeholder="Name" onfocus="this.placeholder =''" onblur="placeholder='Name'" required, oninput="checkFilled()" onabort="checkFilled()">
 			<input type="text" id="roomName" maxlength="20" autocomplete="off" placeholder="room name" onfocus="this.placeholder =''", onblur="placeholder='Name'" required, oninput="checkFilled()" onabort="checkFilled()">
+			<div class="help-tip">
+    			<p>Make sure to use the same room name as your friends so you can all play together!</p>
+			</div>
 			<input type="submit" id="submitbutton" value="Start" onclick="storeNameAndRoomName()">
 		</form>
 	</div>
