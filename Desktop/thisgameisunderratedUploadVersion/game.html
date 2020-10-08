@@ -9,6 +9,7 @@
 </head>
 <body>
   <div class="content-wrapper" id="content">
+    <p onload="getRoomName()" id="roomName"></p>
   	<p onload="getName()" id="name"></p>
 
   	<div class="word" id="wordEvent">
@@ -45,13 +46,24 @@
 				var text = "Player: ";
 	    	name = sessionStorage.name;
 	    	var output = text.concat(name);
-	    	console.log(name);
 	    	var nameNode = document.getElementById("name");
 				nameNode.innerHTML = output;
 		   }
 		}
 
     getName();
+
+    function getRoomName() {
+      if (typeof(Storage) !== "undefined") {
+        var text = "Room: ";
+        roomName = sessionStorage.roomName;
+        var output = text.concat(roomName);
+        var roomNameNode = document.getElementById("roomName");
+        roomNameNode.innerHTML = output;
+       }
+    }
+
+    getRoomName();
 
   </script>
 

@@ -2,6 +2,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+p {
+	margin: 5px;
+	color: #a3a3a3;
+}
+
 #name {
 	text-transform: capitalize;
 }
@@ -9,7 +14,7 @@ body {
 .word {
   text-align: center; /* center the text */
   color: black; /* white text color */
-  margin-top: 120px;
+  margin-top: 110px;
   font-size: 60px;
   vertical-align: top;
   /*border: 3px solid black;*/
@@ -93,6 +98,7 @@ ul {
 li {
 	list-style: none;
 	padding-bottom: 10px;
+	text-transform: capitalize;
 }
 
 #underList {

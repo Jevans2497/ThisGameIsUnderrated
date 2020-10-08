@@ -119,7 +119,7 @@ socket.on('results', displayResults);
 socket.on('nameAndShame', displayNames);
 socket.on('showNewWordButton', showNewWordButton);
 socket.on('reset', resetGame);
-socket.emit('joinRoom', sessionStorage.name);
+socket.emit('joinRoom', sessionStorage.roomName);
 socket.emit('name', sessionStorage.name);
 
 

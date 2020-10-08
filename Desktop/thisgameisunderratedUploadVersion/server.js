@@ -1,6 +1,5 @@
 const http = require('http');
 const express = require('express');
-const socketio = require('socket.io');
 const tgiuGame = require('./tgiu-game');
 
 const app = express()
@@ -8,11 +7,11 @@ const app = express()
 const clientPath = `${__dirname}`;
 console.log(`Serving static from ${clientPath}`);
 
-app.use(express.static(clientPath));
-
 const server = http.createServer(app);
 
-const io = socketio(server);
+app.use(express.static(clientPath));
+
+const io = require('socket.io').listen(server);
 
 server.on('error', (err) => {
 	console.error('Server error: ', err);
