@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>This Game is Underrated</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+	<div class="form-wrapper">
+		<form action="game.html">
+			<input type="text" id="nameField" maxlength="13", autocomplete="off", placeholder="Name" onfocus="this.placeholder =''" onblur="placeholder='Name'" required, oninput="checkFilled()" onabort="checkFilled()">
+			<input type="text" id="roomName" maxlength="20" autocomplete="off" placeholder="room name" onfocus="this.placeholder =''", onblur="placeholder='room name'" required, oninput="checkFilled()" onabort="checkFilled()">
+			<div class="help-tip">
+    			<p>Make sure to use the same room name as your friends so you can all play together!</p>
+			</div>
+			<input type="submit" id="submitbutton" value="Start" onclick="storeNameAndRoomName()">
+		</form>
+	</div>
+
+	<script type="text/javascript">
+
+	function checkFilled() {
+	    var nameInputVal = document.getElementById("nameField");
+	    var roomNameInputVal = document.getElementById("roomName");
+	    var submitbutton = document.getElementById("submitbutton");
+	    if (nameInputVal.value != "" && roomNameInputVal.value != "") {
+	        enableSubmit(submitbutton);
+	    }
+	    else {
+	        disableSubmit();
+	    }
+	}
+
+	function enableSubmit(submitbutton) {
+		this.submitbutton.style.backgroundColor = "#008CBA";
+        this.submitbutton.style.color = "white";
+       	this.submitbutton.disabled = false;
+       	this.submitbutton.style.cursor = "pointer";
+	}
+
+	function disableSubmit(submitbutton) {
+		this.submitbutton.style.backgroundColor = "";
+        this.submitbutton.style.color = "grey";
+        this.submitbutton.disabled = true;
+        this.submitbutton.style.cursor = "default";
+	}
+
+	checkFilled();
+
+	function storeNameAndRoomName() {
+		if (typeof(Storage) !== "undefined") {
+			var nameVal = document.getElementById("nameField").value;
+		    sessionStorage.name = nameVal;
+		    var roomNamVal = document.getElementById("roomName").value;
+		    sessionStorage.roomName = roomNamVal
+		}
+	}
+
+	storeNameAndRoomName();
+
+	</script>
+</body>
+</html>
+
