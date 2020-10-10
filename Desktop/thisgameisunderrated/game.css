@@ -2,18 +2,24 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/*.room-info {
+.room-info {
 	position: absolute;
-	top: 0px;
+	top: 5px;
 	left: 0px;
-	border-right: 1px solid lightgrey;
+	/*border-right: 1px solid lightgrey;*/
 	width: 150px;
 	height: 800px;
-}*/
+}
 
 p {
 	margin: 5px;
 	color: #a3a3a3;
+}
+
+#roomName {
+	text-transform: capitalize;
+	border-bottom: 1px solid grey; 
+	display: inline-block;
 }
 
 #name {

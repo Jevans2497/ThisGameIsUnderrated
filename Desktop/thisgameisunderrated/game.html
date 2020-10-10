@@ -16,7 +16,7 @@
       <div id="queue">
         <form onsubmit="return false">
           <input type="submit" id="queue-button" value="Add to queue" disabled="true">
-          <input type="text" id="queue-text" placeholder="" autocomplete="off" oninput="queueTextUpdated()">
+          <input type="text" id="queue-text" placeholder="" autocomplete="off" oninput="queueTextUpdated()" maxlength="100">
         </form>
       </div>
 
@@ -51,11 +51,9 @@
   		
 		function getName() {
 			if (typeof(Storage) !== "undefined") {
-				var text = "Player: ";
 	    	name = sessionStorage.name;
-	    	var output = text.concat(name);
 	    	var nameNode = document.getElementById("name");
-				nameNode.innerHTML = output;
+				nameNode.innerHTML = name;
 		   }
 		}
 
