@@ -242,7 +242,83 @@ list = """[  ] Pirates
 [  ] Saran Wrap
 [  ] Forks
 [  ] The Sun
-[  ] The Moon"""
+[  ] The Moon
+[  ] Trick or treating
+[  ] Febreeze
+[  ] Motorcycles
+[  ] Tacos
+[  ] Vitamins
+[  ] Starbucks
+[  ] Jazz
+[  ] Single-use Plastics
+[  ] Crossing the Country in an RV
+[  ] Greek Mythology
+[  ] Nascar
+[  ] Roses
+[  ] Shakespeare
+[  ] Hide and Seek
+[  ] Popcorn
+[  ] Craft Beer
+[  ] Fishing
+[  ] Love Seat
+[  ] Donuts
+[  ] The Grateful Dead
+[  ] Corn
+[  ] Deep Dish Pizza
+[  ] Sequels
+[  ] The Internet
+[  ] Tennis
+[  ] The Eiffel Tower
+[  ] The Statue of Liberty
+[  ] Fraternities and Sororities
+[  ] Nickelback
+[  ] Abraham Lincoln
+[  ] George W. Bush
+[  ] Dreams
+[  ] Jewelry
+[  ] Pumpkin Spice
+[  ] Antique Shops
+[  ] Fanny Packs
+[  ] Edward Snowden
+[  ] Summer
+[  ] Autumn
+[  ] Spring
+[  ] Yellow Gatorade
+[  ] Red Gatorade
+[  ] Tylenol
+[  ] Salmon
+[  ] The Grand Canyon
+[  ] Hot Tubs
+[  ] The Only Thing We Have to Fear is Fear Itself
+[  ] George Washington
+[  ] Spiders
+[  ] Umbrellas
+[  ] Carving Pumpkins
+[  ] Perseverance
+[  ] Giraffes
+[  ] Courage
+[  ] Brunch
+[  ] Breakfast
+[  ] Memes
+[  ] Uber/Lyft
+[  ] Shrek
+[  ] Aviator Sunglasses
+[  ] Sailing
+[  ] Magic Tricks
+[  ] Roller Blading
+[  ] Ice Skating
+[  ] Coconut Water
+[  ] Dr. Suess Books
+[  ] Vampire Weekend
+[  ] Mini Golf
+[  ] Getting a Drivers License
+[  ] Southern Accents
+[  ] Mr. Brightside
+[  ] Shel Silverstein
+[  ] Poetry
+[  ] Curse Words
+[  ] Pig Latin
+[  ] British Accents"""
 
 splitList = list.split("[  ]")
 strippedList = map(str.strip, splitList)
