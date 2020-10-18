@@ -113,6 +113,7 @@ const getListIdFromButtonId = (buttonId) => {
 const addNameToList = (listId, name) => {
 	parent = document.getElementById(listId);
 	const li = document.createElement("li");
+	li.classList.add("button-list")
 	li.innerHTML = name;
 	parent.appendChild(li);
 }
