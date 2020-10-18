@@ -97,7 +97,7 @@ list = """[  ] Pirates
 [  ] Skiing / Snowboarding
 [  ] Jupiter
 [  ] Emojis
-[  ] The 1990's
+[  ] The 1990s
 [  ] Britney Spears
 [  ] Exploring Space
 [  ] Elon Musk
