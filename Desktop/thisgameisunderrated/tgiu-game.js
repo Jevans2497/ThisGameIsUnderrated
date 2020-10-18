@@ -16,6 +16,7 @@ class tgiuGame {
 			this.setupSocketEvents(player);
 			this.players.push(player);
 			this.loadWord();
+			this.updatePlayerList()
 		});
 	}
 
@@ -41,7 +42,18 @@ class tgiuGame {
 		})
 	}
 
+	updatePlayerList() {
+		var playerNames = this.players.map((player) => player.name)
+		this.players.forEach((player) => {
+			player.socket.emit('updateNamesList', playerNames)
+		})
+	}
+
 	buttonClicked(button) {
+		var decidedPlayers = this.players.filter(player => player.buttonSelected != null).map((player) => player.name);
+		this.players.forEach((player) => {
+			player.socket.emit("playerDecided", decidedPlayers);
+		})
 		if (this.allPlayersHaveChosen()) {
 			this.showResults();
 		}

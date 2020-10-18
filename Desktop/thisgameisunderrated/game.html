@@ -11,7 +11,8 @@
   <div class="content-wrapper" id="content">
       <div class = room-info>
         <p onload="getRoomName()" id="roomName"></p>
-        <p onload="getName()" id="name"></p>
+        <ul class="name-list" id="name-list">
+        </ul>
       </div>
       <div id="queue">
         <form onsubmit="return false">
@@ -31,14 +32,14 @@
   			<button class="rated-button" id="overrated">Overrated</button>
   		</div>
       <div class="lists-wrapper">
-        <ul id="underList"> 
-          <li></li> 
+        <ul class="result-names" id="underList"> 
+          <li class="button-list"></li> 
         </ul>
-        <ul id="properlyList"> 
-          <li></li>
+        <ul class="result-names" id="properlyList"> 
+          <li class="button-list"></li>
         </ul>
-        <ul id="overList"> 
-          <li></li> 
+        <ul class="result-names" id="overList"> 
+          <li class="button-list"></li> 
         </ul>
       </div>
   	</div>
@@ -48,16 +49,6 @@
   <script src="client.js"></script>
 
   <script type="text/javascript">
-  		
-		function getName() {
-			if (typeof(Storage) !== "undefined") {
-	    	name = sessionStorage.name;
-	    	var nameNode = document.getElementById("name");
-				nameNode.innerHTML = name;
-		   }
-		}
-
-    getName();
 
     function getRoomName() {
       if (typeof(Storage) !== "undefined") {

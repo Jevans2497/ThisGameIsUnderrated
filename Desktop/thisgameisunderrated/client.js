@@ -121,6 +121,41 @@ const resetGame = () => {
 	resetResults();
 	resetNewWordButton();
 	resetNames();
+	resetDecidedPlayers();
+}
+
+const updateSidebarNamesList = (playerNames) => {
+	resetSidebarNameList();
+	var thisPlayersName = sessionStorage.name
+	playerNames.sort(function(x,y){ return x == thisPlayersName ? -1 : y == thisPlayersName ? 1 : 0; });
+	const parent = document.getElementById("name-list");
+	playerNames.forEach((name) => {
+		const li = document.createElement("li");
+		li.innerHTML = name;
+		li.classList.add("opponent-name");
+		parent.appendChild(li);
+	});
+}
+
+const resetSidebarNameList = () => {
+	var sideBarList = document.getElementById("name-list");
+	sideBarList.innerHTML = "";
+}
+
+const showDecidedPlayers = (decidedPlayers) => {
+	let sideBarList = document.getElementById("name-list");
+	sideBarList.childNodes.forEach((child) => {
+		if (decidedPlayers.includes(child.innerHTML)) {
+			child.style.color = "#c0ffc0";
+		}
+	});
+}
+
+const resetDecidedPlayers = () => {
+	let sideBarList = document.getElementById("name-list");
+	sideBarList.childNodes.forEach((child) => {
+		child.style.color = "#a3a3a3";
+	});
 }
 
 const socket = io.connect();
@@ -129,6 +164,8 @@ socket.on('results', displayResults);
 socket.on('nameAndShame', displayNames);
 socket.on('showNewWordButton', showNewWordButton);
 socket.on('reset', resetGame);
+socket.on('updateNamesList', updateSidebarNamesList)
+socket.on('playerDecided', showDecidedPlayers)
 socket.emit('joinRoom', sessionStorage.roomName.toUpperCase());
 socket.emit('name', sessionStorage.name);
 

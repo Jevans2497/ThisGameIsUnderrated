@@ -26,6 +26,19 @@ p {
 	text-transform: capitalize;
 }
 
+ul.name-list {
+	margin: 0;
+	padding: 0;
+}
+
+li.opponent-name {
+	list-style: none;
+	margin-left: 5px;
+	margin-top: 10px;
+	text-transform: capitalize;
+	color: #a3a3a3;
+}
+
 #queue {
 	position: absolute;
 	top: 20px;
@@ -132,7 +145,7 @@ button.rated-button:hover:enabled {
 	text-align: center;
 }
 
-ul {
+ul.result-names {
 	display: inline-block;
 	vertical-align: top;
 	width: 185px;
@@ -141,7 +154,7 @@ ul {
 	/*border: 3px solid red;*/
 }
 
-li {
+li.button-list {
 	list-style: none;
 	padding-bottom: 10px;
 	text-transform: capitalize;
