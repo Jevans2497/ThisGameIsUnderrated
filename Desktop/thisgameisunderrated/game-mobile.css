@@ -134,6 +134,11 @@ button.rated-button:hover:enabled {
   box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24), 0 4px 10px 0 rgba(0,0,0,0.19) !important; 
 }
 
+button.rated-button:active:disabled {
+	background-color: "#a56be4" !important;
+	border: 3px solid purple;
+}
+
 .lists-wrapper {
 	text-align: center;
 }
