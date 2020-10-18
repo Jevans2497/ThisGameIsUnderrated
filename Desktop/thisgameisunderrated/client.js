@@ -147,7 +147,7 @@ const showDecidedPlayers = (decidedPlayers) => {
 	let sideBarList = document.getElementById("name-list");
 	sideBarList.childNodes.forEach((child) => {
 		if (decidedPlayers.includes(child.innerHTML)) {
-			child.style.color = "#c0ffc0";
+			child.style.color = "#000000";
 		}
 	});
 }
