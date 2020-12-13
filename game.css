@@ -16,6 +16,13 @@ p {
 	color: #a3a3a3;
 }
 
+#the-creators {
+	position: absolute;
+	font-size: 13px;
+	bottom: 0;
+	right: 0;
+}
+
 #roomName {
 	text-transform: capitalize;
 	border-bottom: 1px solid grey; 
