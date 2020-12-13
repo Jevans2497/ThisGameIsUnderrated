@@ -1,5 +1,5 @@
 #Just needed some way to get the list from my phone to a javascript ready line of code
-list = """[  ] Pirates
+wordList = """[  ] Pirates
 [  ] Iced Tea
 [  ] The Office
 [  ] First Few Minutes of Waking Up
@@ -34,7 +34,6 @@ list = """[  ] Pirates
 [  ] Thanksgiving
 [  ] Dinosaurs
 [  ] Youtube
-[  ] French kissing
 [  ] Friends (TV show)
 [  ] Purple
 [  ] Cupcakes
@@ -60,7 +59,6 @@ list = """[  ] Pirates
 [  ] Frozen pizza
 [  ] The Beatles
 [  ] The name Katie
-[  ] The Constitution
 [  ] IKEA
 [  ] Lighthouses
 [  ] Live Music
@@ -79,7 +77,6 @@ list = """[  ] Pirates
 [  ] Baseball
 [  ] Mayonnaise
 [  ] Monopoly
-[  ] Marijuana
 [  ] Mosquitos
 [  ] Silver
 [  ] Jeopardy
@@ -157,7 +154,6 @@ list = """[  ] Pirates
 [  ] Truck Stops
 [  ] Watches
 [  ] Flip Flops
-[  ] Vice Presidents
 [  ] Slinkys
 [  ] Wildlife
 [  ] Electric Cars
@@ -243,7 +239,7 @@ list = """[  ] Pirates
 [  ] Forks
 [  ] The Sun
 [  ] The Moon
-[  ] Trick or treating
+[  ] Trick or Treating
 [  ] Febreeze
 [  ] Motorcycles
 [  ] Tacos
@@ -272,14 +268,11 @@ list = """[  ] Pirates
 [  ] The Statue of Liberty
 [  ] Fraternities and Sororities
 [  ] Nickelback
-[  ] Abraham Lincoln
-[  ] George W. Bush
 [  ] Dreams
 [  ] Jewelry
 [  ] Pumpkin Spice
 [  ] Antique Shops
 [  ] Fanny Packs
-[  ] Edward Snowden
 [  ] Summer
 [  ] Autumn
 [  ] Spring
@@ -358,7 +351,7 @@ list = """[  ] Pirates
 [  ] Vampires
 [  ] Vanilla
 [  ] Chocolate
-[  ] S\'mores
+[  ] Smores
 [  ] Getting Dressed Up
 [  ] July 4th
 [  ] Survivor
@@ -384,7 +377,7 @@ list = """[  ] Pirates
 [  ] Pedicures
 [  ] Competition
 [  ] Toy Story
-[  ] Rubik\'s Cube
+[  ] Rubiks Cube
 [  ] Dr. Pepper
 [  ] Australian Accents
 [  ] First Dates
@@ -402,7 +395,15 @@ list = """[  ] Pirates
 [  ] Dessert
 [  ] Corndogs"""
 
-splitList = list.split("[  ]")
+nsfwList = """[  ] French kissing
+[  ] The Constitution
+[  ] Marijuana
+[  ] Vice Presidents
+[  ] Abraham Lincoln
+[  ] George W. Bush
+[  ] Edward Snowden"""
+
+splitList = wordList.split("[  ]")
 strippedList = map(str.strip, splitList)
 joinedList = '\', \''.join(strippedList)
 print(joinedList)

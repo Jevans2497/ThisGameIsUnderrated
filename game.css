@@ -46,6 +46,13 @@ li.opponent-name {
 	color: #a3a3a3;
 }
 
+#color-blind-mode {
+	position: absolute;
+	right: 0;
+	bottom: 2px;
+	border-radius: 4px;
+}
+
 #queue {
 	position: absolute;
 	top: 20px;

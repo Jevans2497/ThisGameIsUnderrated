@@ -15,6 +15,7 @@
         <ul class="name-list" id="name-list">
         </ul>
       </div>
+      <!-- <button id="color-blind-mode" onclick="toggleColorBlindMode()">Color Blind mode OFF</button> -->
       <div id="queue">
         <form onsubmit="return false">
           <input type="submit" id="queue-button" value="Add to queue" disabled="true">
@@ -75,6 +76,17 @@
         queueButtonNode.disabled = false;
       }
     }
+
+    // function toggleColorBlindMode() {
+    //   var cbmode = document.getElementById("color-blind-mode");
+    //   if (cbmode.value == "Color Blind mode OFF") {
+    //     cbmode.value = "Color Blind mode ON"
+    //     cbmode.style.backgroundColor = "#ffc862"
+    //   } else {
+    //     cbmode.value = "Color Blind mode OFF"
+    //     cbmode.style.backgroundColor = "#d3d3d3"  
+    //   } 
+    // }
 
   </script>
 
