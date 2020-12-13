@@ -107,9 +107,12 @@ class tgiuGame {
 	}
 
 	convertCountsToResults(countArr) {
-		var min = Math.min(...countArr.filter((e) => e != 0)); //Min excluding 0
-		//1 = majority, 0 = minority, -1 = no response
-		return countArr.map((e) => Math.sign(e - min));
+		if (this.players.length == 2 && countArr.includes(2)) {
+			return countArr.map((e) => e - 1) // This was added later to make a better 2 player mode. If there are only 2 players and they agree (the if condition), it should be green. Since the countArr will look something like [0, 2, 0], we can just subtract 1 so that it would show [no response, majority, no response]. Hope that makes sense
+		} else {
+			var min = Math.min(...countArr.filter((e) => e != 0)); //Min excluding 0
+			return countArr.map((e) => Math.sign(e - min)); //1 = majority, 0 = minority, -1 = no response
+		}
 	}
 
 	startNextRound() {
