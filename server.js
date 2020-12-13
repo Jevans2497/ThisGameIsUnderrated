@@ -1,3 +1,5 @@
+// To start the server, cd into the terminal directory for the project then type 'npm start'
+
 const http = require('http');
 const express = require('express');
 const tgiuGame = require('./tgiu-game');

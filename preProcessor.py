@@ -59,7 +59,7 @@ list = """[  ] Pirates
 [  ] Gatorade
 [  ] Frozen pizza
 [  ] The Beatles
-[  ] The name "Katie"
+[  ] The name Katie
 [  ] The Constitution
 [  ] IKEA
 [  ] Lighthouses
@@ -132,9 +132,9 @@ list = """[  ] Pirates
 [  ] Camp Songs
 [  ] Trap Music
 [  ] Lebron James
-[  ] The Word "Bro"
+[  ] The Word Bro
 [  ] Soccer
-[  ] Calling Soccer "Futbol"
+[  ] Calling Soccer Futbol
 [  ] Snoop Dogg
 [  ] Hard Seltzer
 [  ] Roundabouts (Driving)
@@ -318,7 +318,89 @@ list = """[  ] Pirates
 [  ] Poetry
 [  ] Curse Words
 [  ] Pig Latin
-[  ] British Accents"""
+[  ] British Accents
+[  ] Glow in the Dark Star Stickers
+[  ] Moving to a New City
+[  ] Christmas Music
+[  ] Reality TV
+[  ] Garage Sales
+[  ] Ripped Jeans
+[  ] Ventriloquism
+[  ] Mustaches
+[  ] Pretzel Buns
+[  ] Craigslist
+[  ] Moon Bounces
+[  ] Birthday Cake
+[  ] Veggie Burgers
+[  ] Indian Food
+[  ] Money
+[  ] Ice Cream
+[  ] Dippin Dots
+[  ] Will Ferrell Movies
+[  ] Groundhogs Day
+[  ] Making Your Bed
+[  ] Bug Spray
+[  ] Sumo Wrestling
+[  ] James Bond
+[  ] Penguins
+[  ] Dolphins
+[  ] Quentin Tarantino Films
+[  ] Wes Anderson Films
+[  ] Bumble Bees
+[  ] The Simpsons
+[  ] Succulents
+[  ] The Lion King
+[  ] LEGO
+[  ] Vanity Plates
+[  ] The Sky
+[  ] Cotton Eye Joe
+[  ] Ghosts
+[  ] Vampires
+[  ] Vanilla
+[  ] Chocolate
+[  ] S\'mores
+[  ] Getting Dressed Up
+[  ] July 4th
+[  ] Survivor
+[  ] Flannels
+[  ] Cowboys
+[  ] Corgis
+[  ] The Wild West
+[  ] Beards
+[  ] Chipotle
+[  ] Lime
+[  ] Violins
+[  ] Islands
+[  ] World Peace
+[  ] Guinness Book of Records
+[  ] Taco Tuesday
+[  ] Thursdays
+[  ] Cheerleading
+[  ] Theatre
+[  ] Musical Theatre
+[  ] Brownies
+[  ] Philosophy
+[  ] Rings
+[  ] Pedicures
+[  ] Competition
+[  ] Toy Story
+[  ] Rubik\'s Cube
+[  ] Dr. Pepper
+[  ] Australian Accents
+[  ] First Dates
+[  ] Calendars
+[  ] Airplane Food
+[  ] Going to Mars
+[  ] Pluto
+[  ] Texting
+[  ] Treadmills
+[  ] Making Plans
+[  ] Fire
+[  ] Creativity
+[  ] The Dictionary
+[  ] GIFs
+[  ] Dessert
+[  ] Corndogs"""
 
 splitList = list.split("[  ]")
 strippedList = map(str.strip, splitList)
