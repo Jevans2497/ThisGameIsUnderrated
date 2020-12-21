@@ -1,5 +1,4 @@
 // To start the server, cd into the terminal directory for the project then type 'npm run dev'
-
 const http = require('http');
 const express = require('express');
 const tgiuGame = require('./tgiu-game');
@@ -32,13 +31,13 @@ io.on('connection', (socket) => {
 		let roomNames = gameRooms.map((gr) => gr.room)
 		let grIndex = roomNames.indexOf(room); // Find index of room (by name) if it exists, else -1
 		if (grIndex > -1) {
-			//Join the room and add the player to the game
+			//If the room already exists, join the room and add the player to the game
 			let gameRoomToJoin = gameRooms[grIndex];
 			socket.join(gameRoomToJoin.room); 
 			gameRoomToJoin.game.addPlayer(socket);
 			console.log(`Joined existing room ${room}`)
 		} else {
-			//Create a new room and add it to the array then join the room and add player
+			//If the room does not exist, Create a new room and add it to the gamerooms array then join the room and add player
 			let newGR = new GameRoom(room);
 			gameRooms.push(newGR);
 			socket.join(newGR.room);
@@ -61,7 +60,7 @@ io.on('connection', (socket) => {
 				}
 			}
 		});
-		//Avoid deleting while iterating
+		//Avoid deleting the room while iterating cause that causes issues
 		if (indexOfGRToDelete) {
 			gameRooms.pop(indexOfGRToDelete);
 		}
@@ -70,7 +69,7 @@ io.on('connection', (socket) => {
 
 class GameRoom {
 	constructor(room) {
-		this.room = room;
+		this.room = room; // A string representing the name of the room
 		this.game = new tgiuGame();
 	}
 }

@@ -1,10 +1,4 @@
-const setNewWord = (text) => {
-	const parent = document.querySelector('#wordEvent');
-	parent.innerHTML = '';
-	const el = document.createElement('h1');
-	el.innerHTML = text;
-	parent.appendChild(el);
-}
+//MARK: BUTTON CLICK LISTENERS
 
 const addButtonListeners = () => {
 	['underrated', 'properlyrated', 'overrated'].forEach((id) => {
@@ -26,6 +20,12 @@ const addToQueueButtonListener = () => {
 	});
 }
 
+
+
+//–––––––––––––––––––––––––––––––––––––
+//MARK: DISPLAYING MAJORITY/MINORITY/NULL ON RATED BUTTONS
+
+//Based on the results array passed in from tgiugame, set the color to either majority/minority/grey
 const displayResults = (resultsArr) => {
 	var ids = ['underrated', 'properlyrated', 'overrated'];
 	var i;
@@ -45,18 +45,14 @@ const displayResults = (resultsArr) => {
 	}
 }
 
-const resetResults = () => {
-	var ids = ['underrated', 'properlyrated', 'overrated'];
-	var i;
-	for (i = 0; i < ids.length; i += 1) {
-		const button = document.getElementById(ids[i]);
-		button.style.background = '#e7e7e7';
-		button.style.color = '#000000';
-		button.style.boxShadow = "none";
-		button.disabled = false;
-	}
-}
 
+
+//–––––––––––––––––––––––––––––––––––––
+//MARK: NEW WORD BUTTON
+
+// If we add multiple click listeners to the new word button, it'll fire for each listener.
+// What ends up happening is that it skips a ton of words cause it calls new word way more than it should. 
+// By only adding the listener only once, we guarantee that it won't do that. 
 var newWordHasEventListener = false;
 
 const showNewWordButton = () => {
@@ -72,31 +68,23 @@ const showNewWordButton = () => {
 	}
 }
 
-const resetNewWordButton = () => {
-	const newWordButton = document.getElementById("new-word-button");
-	newWordButton.style.backgroundColor = "transparent";
-	newWordButton.style.color = "transparent";
-	newWordButton.disabled = true;
-}
 
+
+//–––––––––––––––––––––––––––––––––––––
+//MARK: DISPLAYING NAMES UNDER RATED BUTTONS 
+
+//This method gets the elementID of the list under each rated button and then adds that name to correct list
+//The playersChoicesDict looks something like { ["underrated": "J.D.", "Turk", "Carla"], ... ["overrated": "Elliot", "etc..."] }
 const displayNames = (playersChoicesDict) => {
-	console.log(playersChoicesDict);
-	for (let id in playersChoicesDict) {
-		let listId = getListIdFromButtonId(id);
-		for (var name of playersChoicesDict[id]) {
-			addNameToList(listId, name);
+	for (let buttonId in playersChoicesDict) {
+		let listId = getListIdFromButtonId(buttonId);
+		for (var playerName of playersChoicesDict[buttonId]) {
+			addNameToList(listId, playerName);
 		}
 	}
 }
 
-const resetNames = () => {
-	var ids = ["underList", "properlyList", "overList"];
-	ids.forEach((id) => {
-		const list = document.getElementById(id);
-		list.innerHTML = "";
-	});
-}
-
+//The listIDs are the element ids for the list of names that appear under the rated buttons showing who selected each button. 
 const getListIdFromButtonId = (buttonId) => {
 	switch (buttonId) {
 		case "underrated":
@@ -118,17 +106,33 @@ const addNameToList = (listId, name) => {
 	parent.appendChild(li);
 }
 
-const resetGame = () => {
-	resetResults();
-	resetNewWordButton();
-	resetNames();
-	resetDecidedPlayers();
+
+
+//–––––––––––––––––––––––––––––––––––––
+//MARK: SETTING NEW WORD
+
+const setNewWord = (text) => {
+	const parent = document.querySelector('#wordEvent');
+	parent.innerHTML = '';
+	const el = document.createElement('h1');
+	el.innerHTML = text;
+	parent.appendChild(el);
 }
 
+
+
+//–––––––––––––––––––––––––––––––––––––
+//MARK: SIDEBAR NAMES
+
 const updateSidebarNamesList = (playerNames) => {
+	//It's easier to just entirely clear the list and add in all the currently active players than to figure out joining/leaving 
 	resetSidebarNameList();
+
+	//The player should always see their own name at the top
 	var thisPlayersName = sessionStorage.name
-	playerNames.sort(function(x,y){ return x == thisPlayersName ? -1 : y == thisPlayersName ? 1 : 0; });
+	playerNames.sort(function(x,y) { return x == thisPlayersName ? -1 : y == thisPlayersName ? 1 : 0; });
+
+	//Then it's as simple as adding all the names to the name-list element
 	const parent = document.getElementById("name-list");
 	playerNames.forEach((name) => {
 		const li = document.createElement("li");
@@ -143,12 +147,54 @@ const resetSidebarNameList = () => {
 	sideBarList.innerHTML = "";
 }
 
+//When a player has made a decision, their name should go from grey to black
 const showDecidedPlayers = (decidedPlayers) => {
 	let sideBarList = document.getElementById("name-list");
 	sideBarList.childNodes.forEach((child) => {
 		if (decidedPlayers.includes(child.innerHTML)) {
 			child.style.color = "#000000";
 		}
+	});
+}
+
+
+
+//–––––––––––––––––––––––––––––––––––––
+//MARK: RESETTING THE GAME
+
+//This should be the only function called by tgiugame to reset. Everything to reset a game should be handled here
+const resetGame = () => {
+	resetResults();
+	resetNewWordButton();
+	resetNames();
+	resetDecidedPlayers();
+}
+
+//Reset all the rated buttons to the base color
+const resetResults = () => {
+	var ids = ['underrated', 'properlyrated', 'overrated'];
+	var i;
+	for (i = 0; i < ids.length; i += 1) {
+		const button = document.getElementById(ids[i]);
+		button.style.background = '#e7e7e7';
+		button.style.color = '#000000';
+		button.style.boxShadow = "none";
+		button.disabled = false;
+	}
+}
+
+const resetNewWordButton = () => {
+	const newWordButton = document.getElementById("new-word-button");
+	newWordButton.style.backgroundColor = "transparent";
+	newWordButton.style.color = "transparent";
+	newWordButton.disabled = true;
+}
+
+const resetNames = () => {
+	var ids = ["underList", "properlyList", "overList"];
+	ids.forEach((id) => {
+		const list = document.getElementById(id);
+		list.innerHTML = "";
 	});
 }
 
@@ -159,7 +205,14 @@ const resetDecidedPlayers = () => {
 	});
 }
 
+
+
+//–––––––––––––––––––––––––––––––––––––
+//MARK: THE MEAT - INTERACTION WITH THE SERVER AND TGIUGAME
+
 const socket = io.connect();
+
+//Whenever tgiugame calls socket.emit(__one of the following__) it triggers the method name after the comma
 socket.on('newWord', setNewWord);
 socket.on('results', displayResults);
 socket.on('nameAndShame', displayNames);
@@ -167,9 +220,11 @@ socket.on('showNewWordButton', showNewWordButton);
 socket.on('reset', resetGame);
 socket.on('updateNamesList', updateSidebarNamesList)
 socket.on('playerDecided', showDecidedPlayers)
+
+//If the client is available, that means we already got past the name/roomname first screen
+//The player then should join a room and tell the server to join the room and add their name
 socket.emit('joinRoom', sessionStorage.roomName.toUpperCase());
 socket.emit('name', sessionStorage.name);
-
 
 addButtonListeners();
 addToQueueButtonListener();
