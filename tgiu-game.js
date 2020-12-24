@@ -34,6 +34,10 @@ class tgiuGame {
 		}
 		this.updatePlayerNameSidebarList();
 		this.updateDecidedPlayers();
+		//If the player that disconnected leaves a room where everyone else has chosen, we should show results.
+		if (this.allPlayersHaveChosen()) {
+			this.showResults();
+		}
 	}
 
 	setupSocketEvents(player) {

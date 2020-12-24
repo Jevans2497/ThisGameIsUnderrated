@@ -29,9 +29,9 @@
     <button class="new-word" id="new-word-button" disabled="true">New Word</button>
   	<div class="tgiu-wrapper">
   		<div class="button-wrapper" id="wrapper">
-  			<button class="rated-button" id="underrated">Underrated</button>
-  			<button class="rated-button" id="properlyrated">Properly Rated</button>
-  			<button class="rated-button" id="overrated">Overrated</button>
+  			<button class="rated-button" id="underrated" onclick="highlightButton()">Underrated</button>
+  			<button class="rated-button" id="properlyrated" onclick="highlightButton()">Properly Rated</button>
+  			<button class="rated-button" id="overrated" onclick="highlightButton()">Overrated</button>
   		</div>
       <div class="lists-wrapper">
         <ul class="result-names" id="underList"> 
@@ -77,6 +77,29 @@
         queueButtonNode.disabled = false;
       }
     }
+
+    //Added this to fix a bug where clicking away from any of the rated buttons appears to deselect it since it's just done by "focus". This keeps it highlighted.
+    function highlightButton() {
+        var ids = ['underrated', 'properlyrated', 'overrated'];
+        var i;
+        for (i = 0; i < ids.length; i += 1) {
+            const button = document.getElementById(ids[i]);
+            resetButtonToDefault(button);
+            if (document.activeElement === button) {
+              button.style.backgroundColor = "#008CBA";
+              button.style.color = "white";
+              button.style.boxShadow = "0 3px 4px 0 rgba(0,0,0,0.24), 0 4px 10px 0 rgba(0,0,0,0.19)"
+            }
+        }
+    }
+
+    function resetButtonToDefault(button) {
+      button.style.backgroundColor = "#e7e7e7";
+      button.style.color = "black";
+      button.style.boxShadow = "none";
+    }
+
+
 
     // function toggleColorBlindMode() {
     //   var cbmode = document.getElementById("color-blind-mode");

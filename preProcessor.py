@@ -393,7 +393,8 @@ wordList = """[  ] Pirates
 [  ] The Dictionary
 [  ] GIFs
 [  ] Dessert
-[  ] Corndogs"""
+[  ] Corndogs
+[  ] Zoom"""
 
 nsfwList = """[  ] French kissing
 [  ] The Constitution
