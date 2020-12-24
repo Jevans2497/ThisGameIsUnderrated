@@ -76,6 +76,7 @@ const showNewWordButton = () => {
 //This method gets the elementID of the list under each rated button and then adds that name to correct list
 //The playersChoicesDict looks something like { ["underrated": "J.D.", "Turk", "Carla"], ... ["overrated": "Elliot", "etc..."] }
 const displayNames = (playersChoicesDict) => {
+	resetNames(); // Oh boy this one. If all players chose and then a new player joined and the new player selected an option, it would duplicate all the names. I couldn't decide whether to disable selection after results or to just add this one simple line. So here we are
 	for (let buttonId in playersChoicesDict) {
 		let listId = getListIdFromButtonId(buttonId);
 		for (var playerName of playersChoicesDict[buttonId]) {

@@ -8,6 +8,8 @@ class tgiuGame {
 		this.currentWordCounter = 0;
 	}
 
+
+
 	//–––––––––––––––––––––––––––––––––––––
 	//MARK: PLAYER CONNECTED / DISCONNECTED
 
@@ -19,7 +21,7 @@ class tgiuGame {
 			this.setupSocketEvents(player);
 			this.players.push(player);
 			this.loadWord();
-			this.updatePlayerNameSidebarList()
+			this.updatePlayerNameSidebarList();
 		});
 	}
 
@@ -48,10 +50,11 @@ class tgiuGame {
 	}
 
 	updatePlayerNameSidebarList() {
-		var playerNames = this.players.map((player) => player.name)
+		var playerNames = this.players.map((player) => player.name);
 		this.players.forEach((player) => {
-			player.socket.emit('updateNamesList', playerNames)
+			player.socket.emit('updateNamesList', playerNames);
 		})
+		this.updateDecidedPlayers(); // In case a player joins or disconnects in the middle of a game
 	}
 
 
