@@ -44,7 +44,11 @@ io.on('connection', (socket) => {
 			gameRooms.push(newGR);
 			socket.join(newGR.room);
 			newGR.game.addPlayer(socket);
+<<<<<<< HEAD
 			logger.logRoomOnCreate(newGR.roomOpenTime, room, player)
+=======
+			new RoomLogger().logRoomOnCreate(newGR.roomOpenTime, room, player)
+>>>>>>> 6853e71ef796c335676f3ee3f031e98ebf957f72
 		}
 	});
 
