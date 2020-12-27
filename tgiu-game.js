@@ -1,3 +1,5 @@
+const RoomLogger = require('./room-logger.js')
+
 class tgiuGame {
 
 	constructor() {
@@ -16,12 +18,13 @@ class tgiuGame {
 	//MARK: PLAYER CONNECTED / DISCONNECTED
 
 	addPlayer(socket) {
-		socket.on('name', (name) => {
+		socket.on('name', (name, room) => {
 			this.name = name;
+			let timestamp = Date.now()
 			let player = new Player(socket, name);
-			console.log(`New player added: ${player.name}`);
 			this.setupSocketEvents(player);
 			this.players.push(player);
+			new RoomLogger().logPlayerJoinedRoom(timestamp, room, name)
 			this.loadWord();
 			this.updatePlayerNameSidebarList();
 			if (this.players.length > this.maxNumberOfPlayers) {
@@ -30,12 +33,14 @@ class tgiuGame {
 		});
 	}
 
-	playerDisconnected(socket) {
+	playerDisconnected(socket, room) {
 		var sockets = this.players.map((p) => p.socket.id);
 		var indexOfSocket = sockets.indexOf(socket.id);
 		if (indexOfSocket > -1) {
-			console.log(`${this.players[indexOfSocket].name} disconnected`);
-  			this.players.splice(indexOfSocket, 1);
+			let player = this.players[indexOfSocket].name
+			let timestamp = Date.now()
+			this.players.splice(indexOfSocket, 1);
+			new RoomLogger().logPlayerDisconnected(timestamp, room, player)
 		}
 		this.updatePlayerNameSidebarList();
 		this.updateDecidedPlayers();

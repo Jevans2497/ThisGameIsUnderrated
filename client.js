@@ -224,8 +224,10 @@ socket.on('playerDecided', showDecidedPlayers)
 
 //If the client is available, that means we already got past the name/roomname first screen
 //The player then should join a room and tell the server to join the room and add their name
-socket.emit('joinRoom', sessionStorage.roomName.toUpperCase());
-socket.emit('name', sessionStorage.name);
+let roomName = sessionStorage.roomName.toUpperCase()
+let playerName = sessionStorage.name
+socket.emit('joinRoom', roomName, playerName);
+socket.emit('name', playerName, roomName);
 
 addButtonListeners();
 addToQueueButtonListener();

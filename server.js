@@ -2,6 +2,7 @@
 const http = require('http');
 const express = require('express');
 const tgiuGame = require('./tgiu-game');
+const RoomLogger = require('./room-logger.js')
 
 const app = express();
 
@@ -18,8 +19,9 @@ server.on('error', (err) => {
 	console.error('Server error: ', err);
 });
 
-server.listen(80, () => {
-	console.log('thisgame started on 80');
+let port = 80
+server.listen(port, () => {
+	console.log(`thisgame started on port ${port}`);
 });
 
 var gameRooms = [];
@@ -27,7 +29,7 @@ var gameRooms = [];
 io.on('connection', (socket) => {
 
 	//JOIN ROOM 
-	socket.on("joinRoom", (room) => {
+	socket.on("joinRoom", (room, player) => {
 		let roomNames = gameRooms.map((gr) => gr.room)
 		let grIndex = roomNames.indexOf(room); // Find index of room (by name) if it exists, else -1
 		if (grIndex > -1) {
@@ -35,14 +37,14 @@ io.on('connection', (socket) => {
 			let gameRoomToJoin = gameRooms[grIndex];
 			socket.join(gameRoomToJoin.room); 
 			gameRoomToJoin.game.addPlayer(socket);
-			console.log(`Joined existing room ${room}`)
 		} else {
 			//If the room does not exist, Create a new room and add it to the gamerooms array then join the room and add player
+			let timestamp = Date.now()
 			let newGR = new GameRoom(room);
 			gameRooms.push(newGR);
 			socket.join(newGR.room);
 			newGR.game.addPlayer(socket);
-			console.log(`Joined new room ${room}`)
+			new RoomLogger().logRoomOnCreate(timestamp, room, player)
 		}
 	});
 
@@ -52,18 +54,19 @@ io.on('connection', (socket) => {
 		//Remove the player from their respective game
 		gameRooms.forEach((gr) => {
 			if (gr.game.players.map((p) => p.socket.id).includes(socket.id)) {
-				gr.game.playerDisconnected(socket);
+				gr.game.playerDisconnected(socket, gr.room);
 				//If the room/game is empty now, close it and remove it from the gameRooms list
 				if (gr.game.players.length <= 0) {
-					console.log(`closing room ${gr.room}`);
 					indexOfGRToDelete = gameRooms.indexOf(gr.room);
 				}
 			}
 		});
 		//Avoid deleting the room while iterating cause that causes issues
 		if (indexOfGRToDelete) {
+			let timestamp = Date.now()
 			let roomToDelete = gameRooms.pop(indexOfGRToDelete);
 			new RoomLogger().logRoomOnClose(	
+				timestamp,
 				roomToDelete.room, 
 				roomToDelete.roomOpenTime, 
 				roomToDelete.game.currentWordCounter,
@@ -79,16 +82,5 @@ class GameRoom {
 		this.roomOpenTime = Date.now();
 		this.currentNumberOfPlayers = 1;
 		this.maxNumberOfPlayers = 1;
-	}
-}
-
-class RoomLogger {
-
-	logRoomOnClose(roomName, roomOpenTime, numberOfWordsSeen, maxNumberOfPlayers) {
-		console.log(
-			roomName, 
-			Math.round((Date.now() - roomOpenTime) / 1000),
-			numberOfWordsSeen + 1, 
-			maxNumberOfPlayers);
 	}
 }
