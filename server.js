@@ -39,12 +39,11 @@ io.on('connection', (socket) => {
 			gameRoomToJoin.game.addPlayer(socket);
 		} else {
 			//If the room does not exist, Create a new room and add it to the gamerooms array then join the room and add player
-			let timestamp = Date.now()
 			let newGR = new GameRoom(room);
 			gameRooms.push(newGR);
 			socket.join(newGR.room);
 			newGR.game.addPlayer(socket);
-			new RoomLogger().logRoomOnCreate(timestamp, room, player)
+			new RoomLogger().logRoomOnCreate(newGR.roomOpenTime, room, player)
 		}
 	});
 
