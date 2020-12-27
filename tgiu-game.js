@@ -1,4 +1,4 @@
-const RoomLogger = require('./room-logger.js')
+const Logger = require('./logger.js')
 
 class tgiuGame {
 
@@ -24,7 +24,7 @@ class tgiuGame {
 			let player = new Player(socket, name);
 			this.setupSocketEvents(player);
 			this.players.push(player);
-			new RoomLogger().logPlayerJoinedRoom(timestamp, room, name)
+			this.logger.logPlayerJoinedRoom(timestamp, room, name)
 			this.loadWord();
 			this.updatePlayerNameSidebarList();
 			if (this.players.length > this.maxNumberOfPlayers) {
@@ -40,7 +40,7 @@ class tgiuGame {
 			let player = this.players[indexOfSocket].name
 			let timestamp = Date.now()
 			this.players.splice(indexOfSocket, 1);
-			new RoomLogger().logPlayerDisconnected(timestamp, room, player)
+			this.logger.logPlayerDisconnected(timestamp, room, player)
 		}
 		this.updatePlayerNameSidebarList();
 		this.updateDecidedPlayers();
@@ -59,7 +59,7 @@ class tgiuGame {
 			this.startNextRound();
 		});
 		player.socket.on("addToQueue", (wordToAdd) => {
-			this.logger.logQueueWord(wordToAdd)
+			this.logger.logQueueWord(wordToAdd);
 			this.queueWords.push(wordToAdd);
 		})
 	}
@@ -212,21 +212,6 @@ class Player {
 	}
 }
 
-
-
-//–––––––––––––––––––––––––––––––––––––
-//Logger
-class Logger {
-
-	logResults(currentWord, playersChoicesDict) {
-		console.log(currentWord, playersChoicesDict);
-		//Add timer
-	}
-
-	logQueueWord(queueWord) {
-		console.log(queueWord);
-	}
-}
 
 
 //–––––––––––––––––––––––––––––––––––––

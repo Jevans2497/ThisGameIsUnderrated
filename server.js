@@ -2,7 +2,7 @@
 const http = require('http');
 const express = require('express');
 const tgiuGame = require('./tgiu-game');
-const RoomLogger = require('./room-logger.js')
+const Logger = require('./logger.js')
 
 const app = express();
 
@@ -25,6 +25,7 @@ server.listen(port, () => {
 });
 
 var gameRooms = [];
+let logger = new Logger();
 
 io.on('connection', (socket) => {
 
@@ -39,12 +40,11 @@ io.on('connection', (socket) => {
 			gameRoomToJoin.game.addPlayer(socket);
 		} else {
 			//If the room does not exist, Create a new room and add it to the gamerooms array then join the room and add player
-			let timestamp = Date.now()
 			let newGR = new GameRoom(room);
 			gameRooms.push(newGR);
 			socket.join(newGR.room);
 			newGR.game.addPlayer(socket);
-			new RoomLogger().logRoomOnCreate(timestamp, room, player)
+			logger.logRoomOnCreate(newGR.roomOpenTime, room, player)
 		}
 	});
 
@@ -63,10 +63,10 @@ io.on('connection', (socket) => {
 		});
 		//Avoid deleting the room while iterating cause that causes issues
 		if (indexOfGRToDelete) {
-			let timestamp = Date.now()
+			let closingTime = Date.now()
 			let roomToDelete = gameRooms.pop(indexOfGRToDelete);
-			new RoomLogger().logRoomOnClose(	
-				timestamp,
+			logger.logRoomOnClose(	
+				closingTime,
 				roomToDelete.room, 
 				roomToDelete.roomOpenTime, 
 				roomToDelete.game.currentWordCounter,

@@ -1,4 +1,4 @@
-class RoomLogger {
+class Logger {
 
         // Isolate logging logic so that we can easily add additional steps later, such as writing logs to a file, etc.
         log(string) {
@@ -51,6 +51,15 @@ class RoomLogger {
                         message: `Player '${player}' disconnected from room '${roomName}'.`,
                 }))
         }
+
+        logResults(currentWord, playersChoicesDict) {
+                console.log(currentWord, playersChoicesDict);
+                //Add timer
+        }
+
+        logQueueWord(queueWord) {
+                console.log(queueWord);
+        }
 }
 
-module.exports = RoomLogger
+module.exports = Logger
