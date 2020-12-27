@@ -2,6 +2,7 @@ class tgiuGame {
 
 	constructor() {
 		this.players = [];
+		this.maxNumberOfPlayers = 0; //For logging
 		this.currentWord = "";
 		this.words = [];
 		this.queueWords = [];
@@ -23,6 +24,9 @@ class tgiuGame {
 			this.players.push(player);
 			this.loadWord();
 			this.updatePlayerNameSidebarList();
+			if (this.players.length > this.maxNumberOfPlayers) {
+				this.maxNumberOfPlayers = this.players.length;
+			}
 		});
 	}
 
@@ -211,6 +215,7 @@ class Logger {
 
 	logResults(currentWord, playersChoicesDict) {
 		console.log(currentWord, playersChoicesDict);
+		//Add timer
 	}
 
 	logQueueWord(queueWord) {

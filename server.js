@@ -62,7 +62,12 @@ io.on('connection', (socket) => {
 		});
 		//Avoid deleting the room while iterating cause that causes issues
 		if (indexOfGRToDelete) {
-			gameRooms.pop(indexOfGRToDelete);
+			let roomToDelete = gameRooms.pop(indexOfGRToDelete);
+			new RoomLogger().logRoomOnClose(	
+				roomToDelete.room, 
+				roomToDelete.roomOpenTime, 
+				roomToDelete.game.currentWordCounter,
+				roomToDelete.game.maxNumberOfPlayers);
 		}
 	});
 });
@@ -71,5 +76,19 @@ class GameRoom {
 	constructor(room) {
 		this.room = room; // A string representing the name of the room
 		this.game = new tgiuGame();
+		this.roomOpenTime = Date.now();
+		this.currentNumberOfPlayers = 1;
+		this.maxNumberOfPlayers = 1;
+	}
+}
+
+class RoomLogger {
+
+	logRoomOnClose(roomName, roomOpenTime, numberOfWordsSeen, maxNumberOfPlayers) {
+		console.log(
+			roomName, 
+			Math.round((Date.now() - roomOpenTime) / 1000),
+			numberOfWordsSeen + 1, 
+			maxNumberOfPlayers);
 	}
 }
