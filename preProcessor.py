@@ -406,6 +406,8 @@ nsfwList = """[  ] French kissing
 
 splitList = wordList.split("[  ]")
 strippedList = map(str.strip, splitList)
-joinedList = '\', \''.join(strippedList)
-print(joinedList)
+# joinedList = '\', \''.join(strippedList)
+# print(joinedList)
+for word in strippedList:
+	print(word)
 

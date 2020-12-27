@@ -6,6 +6,7 @@ class tgiuGame {
 		this.words = [];
 		this.queueWords = [];
 		this.currentWordCounter = 0;
+		this.logger = new Logger();
 	}
 
 
@@ -35,7 +36,7 @@ class tgiuGame {
 		this.updatePlayerNameSidebarList();
 		this.updateDecidedPlayers();
 		//If the player that disconnected leaves a room where everyone else has chosen, we should show results.
-		if (this.allPlayersHaveChosen()) {
+		if (this.allPlayersHaveChosen() && this.players.length > 0) {
 			this.showResults();
 		}
 	}
@@ -49,6 +50,7 @@ class tgiuGame {
 			this.startNextRound();
 		});
 		player.socket.on("addToQueue", (wordToAdd) => {
+			this.logger.logQueueWord(wordToAdd)
 			this.queueWords.push(wordToAdd);
 		})
 	}
@@ -95,6 +97,7 @@ class tgiuGame {
 			player.socket.emit('nameAndShame', playersChoicesDict);
 			player.socket.emit('showNewWordButton');
 		});
+		this.logger.logResults(this.currentWord, playersChoicesDict);
 	}
 
 	countPlayerChoices() {
@@ -200,6 +203,20 @@ class Player {
 	}
 }
 
+
+
+//–––––––––––––––––––––––––––––––––––––
+//Logger
+class Logger {
+
+	logResults(currentWord, playersChoicesDict) {
+		console.log(currentWord, playersChoicesDict);
+	}
+
+	logQueueWord(queueWord) {
+		console.log(queueWord);
+	}
+}
 
 
 //–––––––––––––––––––––––––––––––––––––
