@@ -1,8 +1,11 @@
+#We have a theory that the more 'controversial' a word is, the more fun it is to discuss. 
+#Because of this, having an effective measure of controversy will allow us to sort words by how interesting they are
+
 def determineScore(wordData):
 	underratedCount, properlyratedCount, overratedCount = wordData[0], wordData[1], wordData[2]
 	total = underratedCount + properlyratedCount + overratedCount
 
-	# Get the percentage for each of the three options
+	# Get the percentage relative to the total for each of the three options 
 	percentages = map(lambda x: float(x) / total, [underratedCount, properlyratedCount, overratedCount])
 
 	# Get the difference between all possible combinations
